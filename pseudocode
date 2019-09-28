@@ -1,0 +1,54 @@
+create the html file
+    header bar at top
+    search column
+    main column
+        city information
+        -city name (current date) weather conditions img
+        -temp
+        -humidity
+        -wind speed
+        -uv index
+        5-day forecast
+        - 5 columns
+    footer?
+
+
+JavaScript
+
+Event listeners:
+
+on submit for "Search for a City"
+    if city is a real city
+        add formatted city name to column
+        updateSearchHistory(city)
+        renderCityInfo(city)
+        renderForecast(city)
+    else
+        print in search bar input "city not found"
+
+on click for left column city names
+    renderCityInfo()
+    renderForecast(city)
+
+Functions:
+
+loadSearchHistory()
+    accesses local storage and populates left column with previously searched cities
+    renderCityInfo(city) <-- last stored city
+
+updateSearchHistory(city)
+    adds new entry into local storage
+
+renderCityInfo(city)
+    AJAX "GET" method for current city information
+    populate current city card with relevant info
+
+renderForecast(city)
+    AJAX "GET" method for forecast information
+    populate five columns with:
+        -date
+        -weather image
+        -temp (F)
+        -humidity
+
+AJAX "GET" to connect to Weather Channel API
