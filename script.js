@@ -17,7 +17,7 @@ function getCurrentWeather(city) {
         const lon = response.coord.lon
 
         // get weather icon url
-        const iconURL = `http://openweathermap.org/img/w/${response.weather[0].icon}.png`
+        let iconURL = `http://openweathermap.org/img/w/${response.weather[0].icon}.png`
 
         // convert m/s to knots
         const windSpeed = response.wind.speed * 1.944
@@ -44,15 +44,19 @@ function getFiveDay(city) {
         method: "GET"
     }).then(function(response) {
         console.log(response);
+        let arrayIndex = 4;
     
 
         for (i = 1; i < 6; i++){
             let day = moment().add(i, 'days').format('MM/DD/YYYY');
+            let iconURL = `http://openweathermap.org/img/w/${response.list[arrayIndex].weather[0].icon}.png`
 
             $(`#forecast-date-${i}`).text(day);
-            $(`#forecast-temp-${i}`).text(response.list[4].main.temp);
-            $(`#forecast-temp-${i}`).text(response.list[4].main.temp);
-            $(`#forecast-temp-${i}`).text(response.list[4].main.temp);
+            $(`#forecast-temp-${i}`).text(`${response.list[arrayIndex].main.temp.toFixed(1)} \xB0F`);
+            $(`#forecast-hum-${i}`).text(response.list[arrayIndex].main.humidity + '%');
+            $(`#forecast-image-${i}`).attr('src', iconURL);
+
+            arrayIndex += 8;
         }
     })
 }
@@ -88,4 +92,4 @@ function getUVIndex(lat, lon) {
 }
 
 getCurrentWeather("Los Angeles");
-getFiveDay("Los Angeles");
+getFiveDay("London");
