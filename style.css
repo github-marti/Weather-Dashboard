@@ -62,7 +62,7 @@ button {
 
 .list-item {
     background: white;
-    color: #464646;
+    color: #808080;
     padding: 5px;
     border: 1px solid #ddd;
     margin: 5px 0;
@@ -136,6 +136,19 @@ button {
 
 @media screen and (max-width: 575px) {
     .search-col {
+        text-align: left;
         min-height: 30%;
     }
+
+    #search-bar {
+        width: 85%;
+    }
+
+    .weather-icon {
+        float: right;
+        height: 70px; 
+
+    }
+
+    
 }
