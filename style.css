@@ -38,14 +38,38 @@ h1 {
     padding: 0 5px;
 }
 
-#submit-button {
-    height: 40px;
-    width: 40px;
+button {
     margin: 3px;
     background: #008cff;
     color: white;
     border-style: none;
     border-radius: 3px;
+}
+
+#submit-button {
+    height: 40px;
+    width: 40px;
+}
+
+#clear-button {
+    margin-top: 15px;
+    padding: 5px 15px;
+}
+
+#search-display {
+    margin-top: 15px;
+}
+
+.list-item {
+    background: white;
+    color: #464646;
+    padding: 5px;
+    border: 1px solid #ddd;
+    margin: 5px 0;
+}
+
+.list-item:hover {
+    cursor: pointer;
 }
 
 .main {

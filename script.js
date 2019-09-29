@@ -1,9 +1,11 @@
 // global variables
 const apiKey = "32d68f82674d25a88e4344fd3ae53c80"
 const today = moment().format('MM/DD/YYYY');
+const citiesArray = [];
+
 
 function getCurrentWeather(city) {
-    // variables for ajax get
+    // code to get data from api
     let queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=${apiKey}`
 
     $.ajax({
@@ -37,6 +39,7 @@ function getCurrentWeather(city) {
 }
 
 function getFiveDay(city) {
+    // code to get data from api
     let queryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`
 
     $.ajax({
@@ -44,9 +47,10 @@ function getFiveDay(city) {
         method: "GET"
     }).then(function(response) {
         console.log(response);
+        // sets array to start at 12 noon on following day
         let arrayIndex = 4;
     
-
+        // for loop that runs 5 times to populate 5 day forecast cards
         for (i = 1; i < 6; i++){
             let day = moment().add(i, 'days').format('MM/DD/YYYY');
             let iconURL = `http://openweathermap.org/img/w/${response.list[arrayIndex].weather[0].icon}.png`
@@ -56,6 +60,7 @@ function getFiveDay(city) {
             $(`#forecast-hum-${i}`).text(response.list[arrayIndex].main.humidity + '%');
             $(`#forecast-image-${i}`).attr('src', iconURL);
 
+            // moves array index up 24 hours
             arrayIndex += 8;
         }
     })
@@ -91,5 +96,55 @@ function getUVIndex(lat, lon) {
     })
 }
 
-getCurrentWeather("Los Angeles");
-getFiveDay("London");
+function loadData() {
+    let storedCities = JSON.parse(localStorage.getItem('cities'));
+
+    if (storedCities !== null) {
+        for (let i = 0; i < storedCities.length; i++) {
+            citiesArray.push(storedCities[i])
+            let p = $('<p>').text(storedCities[i]);
+            p.addClass('list-item');
+            $('#search-display').prepend(p);
+        }
+    }
+
+    getCurrentWeather(storedCities[storedCities.length-1]);
+    getFiveDay(storedCities[storedCities.length-1]);
+}
+
+function storeData(city) {
+    citiesArray.push(city);
+    localStorage.setItem('cities', JSON.stringify(citiesArray));
+}
+
+function clearData() {
+    localStorage.clear();
+    $('#search-display').html('');
+}
+
+$('#submit-button').on('click', function() {
+
+    let city = $('#search-bar').val();
+    let p = $('<p>').text(city);
+    p.addClass('list-item');
+    $('#search-display').prepend(p);
+
+    getCurrentWeather(city);
+    getFiveDay(city);
+
+    storeData(city);
+})
+
+$('#search-display').on('click', '.list-item', function() {
+    console.log('click');
+    let city = $(this).text();
+    console.log(city);
+    getCurrentWeather(city)
+    getFiveDay(city);
+})
+
+$('#clear-button').on('click', clearData);
+
+
+loadData();
+
