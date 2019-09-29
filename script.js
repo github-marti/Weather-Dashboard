@@ -6,7 +6,7 @@ const citiesArray = [];
 
 function getCurrentWeather(city) {
     // code to get data from api
-    let queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=${apiKey}`
+    let queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=${apiKey}`
 
     $.ajax({
         url: queryURL,
@@ -19,7 +19,7 @@ function getCurrentWeather(city) {
         const lon = response.coord.lon
 
         // get weather icon url
-        let iconURL = `http://openweathermap.org/img/w/${response.weather[0].icon}.png`
+        let iconURL = `https://openweathermap.org/img/w/${response.weather[0].icon}.png`
 
         // convert m/s to knots
         const windSpeed = response.wind.speed * 1.944
@@ -40,7 +40,7 @@ function getCurrentWeather(city) {
 
 function getFiveDay(city) {
     // code to get data from api
-    let queryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`
+    let queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`
 
     $.ajax({
         url: queryURL,
@@ -53,7 +53,7 @@ function getFiveDay(city) {
         // for loop that runs 5 times to populate 5 day forecast cards
         for (i = 1; i < 6; i++){
             let day = moment().add(i, 'days').format('MM/DD/YYYY');
-            let iconURL = `http://openweathermap.org/img/w/${response.list[arrayIndex].weather[0].icon}.png`
+            let iconURL = `https://openweathermap.org/img/w/${response.list[arrayIndex].weather[0].icon}.png`
 
             $(`#forecast-date-${i}`).text(day);
             $(`#forecast-temp-${i}`).text(`${response.list[arrayIndex].main.temp.toFixed(1)} \xB0F`);
@@ -67,7 +67,7 @@ function getFiveDay(city) {
 }
 
 function getUVIndex(lat, lon) {
-    let queryURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`
+    let queryURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`
 
     $.ajax({
         url: queryURL,
