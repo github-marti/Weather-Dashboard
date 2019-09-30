@@ -206,13 +206,19 @@ function clearData() {
 $('#submit-button').on('click', function() {
     // makes input into a standard capitalized format
     let cityInput = $('#search-bar').val();
-    let city = cityInput[0].toUpperCase() + cityInput.slice(1).toLowerCase();
+    let city = cityInput.replace(/\w\S*/g, function(txt){
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+
+    console.log(city);
+    
+    // let city = cityInput[0].toUpperCase() + cityInput.slice(1).toLowerCase();
 
     // calls current weather and five day forecast functions
     getCurrentWeather(city);
 })
 
-// event listener for previous search items
+// event listener for previously searched list
 $('#search-display').on('click', '.list-item', function() {
     // calls weather functions
     let city = $(this).text();
