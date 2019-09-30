@@ -18,7 +18,7 @@ body {
 .header {
     height: 100px;
     background: #272b2b;
-    background-image: linear-gradient(rgba(1, 0, 65, 0), rgb(0, 45, 128, 0.8)), url('bg-clouds.jpg');
+    background-image: linear-gradient(rgba(16, 129, 221, 0.3), rgb(16, 129, 221, 0.8)), url('bg-clouds.jpg');
     background-size: cover;
     text-shadow: 2px 2px 0px #000;
     color: white;
@@ -103,7 +103,7 @@ button {
 
 .forecast {
     padding: 10px;
-    background: #1081dd;
+    background: rgb(16, 129, 221);
     color: white;
     margin: 5px;
     border-radius: 5px;
