@@ -18,6 +18,9 @@ body {
 .header {
     height: 100px;
     background: #272b2b;
+    background-image: linear-gradient(rgba(1, 0, 65, 0), rgb(0, 45, 128, 0.8)), url('bg-clouds.jpg');
+    background-size: cover;
+    text-shadow: 2px 2px 0px #000;
     color: white;
 }
 
@@ -40,7 +43,7 @@ h1 {
 
 button {
     margin: 3px;
-    background: #008cff;
+    background: #1081dd;
     color: white;
     border-style: none;
     border-radius: 3px;
@@ -100,7 +103,7 @@ button {
 
 .forecast {
     padding: 10px;
-    background: #008cff;
+    background: #1081dd;
     color: white;
     margin: 5px;
     border-radius: 5px;
