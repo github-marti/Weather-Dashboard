@@ -1,3 +1,5 @@
+"use strict"
+
 // global variables
 const apiKey = "32d68f82674d25a88e4344fd3ae53c80"
 let citiesArray = [];
