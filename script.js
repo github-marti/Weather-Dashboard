@@ -184,7 +184,7 @@ function loadData() {
 // function for saving data to local storage
 function storeData(city) {
     // pushes new city query into array and puts array into local storage
-    if (citiesArray[citiesArray.length-1] !== city) {
+    if (!citiesArray.includes(city)) {
         citiesArray.push(city);
         localStorage.setItem('cities', JSON.stringify(citiesArray));
 
@@ -209,10 +209,6 @@ $('#submit-button').on('click', function() {
     let city = cityInput.replace(/\w\S*/g, function(txt){
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
-
-    console.log(city);
-    
-    // let city = cityInput[0].toUpperCase() + cityInput.slice(1).toLowerCase();
 
     // calls current weather and five day forecast functions
     getCurrentWeather(city);
