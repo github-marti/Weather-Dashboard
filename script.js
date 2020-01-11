@@ -16,8 +16,6 @@ function getLocalWeather(position) {
         url: queryURL,
         method: "GET"
     }).then(function(response) {
-        console.log(response);
-
         // get weather icon url
         let iconURL = `https://openweathermap.org/img/w/${response.weather[0].icon}.png`
 
@@ -39,7 +37,6 @@ function getLocalWeather(position) {
         url: queryURL,
         method: "GET"
     }).then(function(response) {
-        console.log(response);
         // sets array to start at 12 noon on following day
         let arrayIndex = 4;
     
@@ -68,8 +65,6 @@ function getCurrentWeather(city) {
         url: queryURL,
         method: "GET"
     }).then(function(response) {
-        console.log(response);
-
         // get the local time
         const unixTime = response.dt + response.timezone;
         let today = moment.unix(unixTime).format("MM/DD/YYYY");
@@ -110,10 +105,8 @@ function getFiveDay(city, unixTime) {
         url: queryURL,
         method: "GET"
     }).then(function(response) {
-        console.log(response);
         // sets array to start at 12 noon on following day
         let arrayIndex = 4;
-        console.log(unixTime);
     
         // for loop that runs 5 times to populate 5 day forecast cards
         for (i = 1; i < 6; i++){
@@ -138,9 +131,7 @@ function getUVIndex(lat, lon) {
     $.ajax({
         url: queryURL,
         method: "GET"
-    }).then(function(response) {        
-        
-        console.log(response);
+    }).then(function(response) {     
 
         const index = response.value
 
